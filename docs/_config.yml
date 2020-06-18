@@ -1,5 +1,5 @@
 site: nix
-url: https://4humans.github.io
+url: https://nix.4humans.info
 title: *nix4humans
 description: nix4humans is all about evangelising the unwashed masses to the gospel of nix.
 twitter:
@@ -14,7 +14,7 @@ author:
   url: #yoururl
 permalink: pretty
 
-baseurl: /nix
+baseurl: ""
 
 highlighter: rouge
 
