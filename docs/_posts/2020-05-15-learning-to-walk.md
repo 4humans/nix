@@ -50,7 +50,7 @@ Well, quite simply, it **`l`**i**`s`**ts the contents of the directory you are c
 Omitting the optional argument results in the following very spartan output:
 <pre>
 root@nix /# <b>ls</b>
-bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+bin@  boot/  dev/  etc/  home/  lib@  lib32@  lib64@  libx32@  media/  mnt/  opt/  proc/  root/  run/  sbin@  srv/  sys/  tmp/  usr/  var/
 root@nix /# <b>&block;</b>
 </pre>
 
@@ -58,7 +58,7 @@ There is much more to know about our friend **`ls`** (like the options `1`, `a`,
 
 Alright ... but how do I know which directory I am *currently* in?
 
-In *this* case you could look at the prompt to see `root@nix:/#` and from that deduce that the user `root` is logged into the container `nix` and is currently in the directory `/`. And all that would be perfectly correct, *but not necessarily universally true*, since that is dependent on the configuration of the prompt (which may be different on different `*nix` [boxen](http://catb.org/jargon/html/B/boxen.html)).
+In *this* case you could look at the prompt to see `root@nix /#` and from that deduce that the user `root` is logged into the container `nix` and is currently in the directory `/`. And all that would be perfectly correct, *but not necessarily universally true*, since that is dependent on the configuration of the prompt (which may be different on different `*nix` [boxen](http://catb.org/jargon/html/B/boxen.html)).
 
 The command that reliably answers your question is **`p`**resent **`w`**orking **`d`**irectory.
 <pre>
@@ -151,8 +151,8 @@ dr-xr-xr-x  12 root root    0 Jun 21 13:02 sys/
 drwxrwxrwt   1 root root 4096 Jun 21 12:59 tmp/
 drwxr-xr-x   1 root root 4096 Jun  6 23:11 usr/
 drwxr-xr-x   1 root root 4096 Apr 23 11:09 var/
-root@nix:/# <b>cd l</b>     # Pressing tab completes this to...
-root@nix:/# <b>cd lib</b>   # Which is not sufficiently unique to fully autocomplete.
+root@nix /# <b>cd l</b>     # Pressing tab completes this to...
+root@nix /# <b>cd lib</b>   # Which is not sufficiently unique to fully autocomplete.
                             # Double-pressing tab again displays your completion options...
 lib/   lib64/               # Then typing 6 (to provide a completion hint) and tab again completes full autocomplete...
 root@nix /# <b>cd lib64/</b>

@@ -32,7 +32,7 @@ But before I illustrate how this is done, let's first learn the *absolute basics
 <hr />
 **`g`**lobal **`r`**egular **`e`**xpression **`p`**rint is to 'Find', what Zeus is to [Perseus](https://en.wikipedia.org/wiki/Perseus#Argive_genealogy_in_Greek_mythology). Remember the `/etc/passwd` file?
 <pre>
-root@nix:/# <b>cat /etc/passwd</b>
+root@nix /# <b>cat /etc/passwd</b>
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -52,12 +52,12 @@ irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
 gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
 nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
 _apt:x:100:65534::/nonexistent:/usr/sbin/nologin
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 
 Check this:
 <pre>
-root@nix:/# <b>grep 'var' /etc/passwd</b>
+root@nix /# <b>grep 'var' /etc/passwd</b>
 man:x:6:12:man:/<b>var</b>/cache/man:/usr/sbin/nologin
 lp:x:7:7:lp:/<b>var</b>/spool/lpd:/usr/sbin/nologin
 mail:x:8:8:mail:/<b>var</b>/mail:/usr/sbin/nologin
@@ -68,7 +68,7 @@ backup:x:34:34:backup:/<b>var</b>/backups:/usr/sbin/nologin
 list:x:38:38:Mailing List Manager:/<b>var</b>/list:/usr/sbin/nologin
 irc:x:39:39:ircd:/<b>var</b>/run/ircd:/usr/sbin/nologin
 gnats:x:41:41:Gnats Bug-Reporting System (admin):/<b>var</b>/lib/gnats:/usr/sbin/nologin
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 *"So **`grep`** finds stuff?"*
 
@@ -82,9 +82,9 @@ For our first example of laying some pipe, what if we wanted to count how many l
 
 *"Easy"* you say, *"like we've totally done this."*
 <pre>
-root@nix:/# <b>wc -l /etc/passwd</b>
+root@nix /# <b>wc -l /etc/passwd</b>
 <b>19</b> /etc/passwd
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 Great! Well remembered.
 
@@ -97,9 +97,9 @@ Exactly! It makes so much sense right? Like a conveyor belt.
 We have **`grep`** that churns out some lines from a specified file (`/etc/passwd`) which is a selection based on a provided argument (`'var'`). Then we simply plug **`grep`**'s `std_out` into the `std_in` of something that can count things i.e. **`wc`**, and specify exactly how we want it counted, with an argument (`-l`).
 
 <pre>
-root@nix:/# <b>grep 'var' /etc/passwd | wc -l</b>
+root@nix /# <b>grep 'var' /etc/passwd | wc -l</b>
 <b>10</b>
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 Notice how **`wc`** now does not display the `/etc/passwd` filename, why?
 
@@ -110,7 +110,7 @@ So, if I asked you to show me only the lines containing the text `'var'` ... but
 *"Sure. Just pipe the prior **`grep`** command's output, into **`sort`** instead of **`wc -l`**"*
 
 <pre>
-root@nix:/# <b>grep 'var' /etc/passwd | sort</b>
+root@nix /# <b>grep 'var' /etc/passwd | sort</b>
 backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
 gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
 irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
@@ -121,24 +121,24 @@ man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
 news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
 uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
 www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 
 EXACTLY! And it is this 'obviousness' of the plumbing paradigm that allows anyone to fairly quickly and easily string together a reasonably complex chain of operations in a predictable (not to mention powerful) way.
 
 Now, I'm going to use two commands you've never seen, and I'd bet you'd be able to deduce the goal of my constructed pipeline:
 <pre>
-root@nix:/# <b>cat /etc/passwd | cut -d ':' -f 7 | sort | uniq -c</b>
+root@nix /# <b>cat /etc/passwd | cut -d ':' -f 7 | sort | uniq -c</b>
       <b>1</b> /bin/bash
       <b>1</b> /bin/sync
      <b>17</b> /usr/sbin/nologin
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 
 Notice we've subbed the picky **`grep`** for the spewy **`cat`**. Piped effectively the entire contents of `/etc/passwd` into a new unknown command called **`cut`**. Looking at its output (and I encourage you to build this pipeline on your own *Docker* container) it simply uses colon as a field delimiter and selects only field 7 (the last field).
 
 <pre>
-root@nix:/# <b>cat /etc/passwd | cut -d ':' -f 7</b>
+root@nix /# <b>cat /etc/passwd | cut -d ':' -f 7</b>
 /bin/bash
 /usr/sbin/nologin
 /usr/sbin/nologin
@@ -158,7 +158,7 @@ root@nix:/# <b>cat /etc/passwd | cut -d ':' -f 7</b>
 /usr/sbin/nologin
 /usr/sbin/nologin
 /usr/sbin/nologin
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 
 *"**`sort`** will obviously order the lines. And then the next "unknown" (**`uniq -c`**) ostensibly counts the number of occurrences of each unique string ... almost like `SELECT FIELD, COUNT(ID) FROM TABLE GROUP BY FIELD` would have done in SQL."*

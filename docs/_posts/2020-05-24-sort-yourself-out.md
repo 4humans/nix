@@ -17,7 +17,7 @@ Now. Suppose you were given the following request:
 Here is the solution:
 
 <pre>
-root@nix:/sbin# <b>cut /etc/passwd -d ':' -f 1,3,6,7 | sort -t ':' -k2nr,2</b>
+root@nix /sbin# <b>cut /etc/passwd -d ':' -f 1,3,6,7 | sort -t ':' -k2nr,2</b>
 nobody:<b>65534</b>:/nonexistent:/usr/sbin/nologin
 _apt:<b>100</b>:/nonexistent:/usr/sbin/nologin
 gnats:<b>41</b>:/var/lib/gnats:/usr/sbin/nologin
@@ -37,7 +37,7 @@ sys:<b>3</b>:/dev:/usr/sbin/nologin
 bin:<b>2</b>:/bin:/usr/sbin/nologin
 daemon:<b>1</b>:/usr/sbin:/usr/sbin/nologin
 root:<b>0</b>:/root:/bin/bash
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 
 ...and the explanation:
@@ -48,7 +48,7 @@ root@nix:/# <b>&block;</b>
 Now, let's complicate the ordering requirement even more: let's say that we want the `user home` field ordered in dictionary order, however values for this field are non-distinct, so to resolve the cases where a few records have the same value for this field, a secondary sort occurs on `user id` as an ascending *numeric* field.
 
 <pre>
-root@nix:/sbin# <b>cut /etc/passwd -d ':' -f 1,3,6,7 | sort -t ':' -k3d,3 -k2n,2</b>
+root@nix /sbin# <b>cut /etc/passwd -d ':' -f 1,3,6,7 | sort -t ':' -k3d,3 -k2n,2</b>
 bin:<b>2</b>:<b>/bin</b>:/usr/sbin/nologin
 sync:<b>4</b>:<b>/bin</b>:/bin/sync
 proxy:<b>13</b>:<b>/bin</b>:/usr/sbin/nologin
@@ -68,7 +68,7 @@ lp:<b>7</b>:<b>/var/spool/lpd</b>:/usr/sbin/nologin
 news:<b>9</b>:<b>/var/spool/news</b>:/usr/sbin/nologin
 uucp:<b>10</b>:<b>/var/spool/uucp</b>:/usr/sbin/nologin
 www-data:<b>33</b>:<b>/var/www</b>:/usr/sbin/nologin
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 
 Let me perhaps demonstrate one more interesting option.
@@ -168,9 +168,9 @@ This illustrates something that you will encounter countless times in `*nix`, na
 \* Well, not *nix **`cat`**, since it appears not to have any skin.
 
 <pre>
-root@nix:~/coreutils-8.32/src# <b>wc -l cat.c</b>
+root@nix ~/coreutils-8.32/src# <b>wc -l cat.c</b>
      767 cat.c
-root@nix:~/coreutils-8.32/src# <b>fgrep -ci skin cat.c</b>
+root@nix ~/coreutils-8.32/src# <b>fgrep -ci skin cat.c</b>
 0
 # I'm sorry ... I know ... it's a terrible nerd joke.
 root@f749d99eff10:/# <b>&block;</b>

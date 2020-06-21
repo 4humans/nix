@@ -188,7 +188,7 @@ dr-xr-xr-x  12 root root    0 Jun 21 12:59 sys/
 drwxrwxrwt   1 root root 4096 Jun 21 12:59 tmp/
 drwxr-xr-x   1 root root 4096 Jun  6 23:11 usr/
 drwxr-xr-x   1 root root 4096 Apr 23 11:09 var/
-root@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 
 And to exit the container, simply type `exit`:
@@ -200,7 +200,7 @@ exit
 
 Or on *Windows*:
 <pre>
-root@nix:/# <b>exit</b>
+root@nix /# <b>exit</b>
 exit
 C:\WINDOWS><b>&block;</b>
 </pre>

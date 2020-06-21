@@ -61,7 +61,7 @@ Sorry, I digress. There are arcane volumes you can reach for when you need to re
 <hr />
 As you can see below, **`help`** (not unlike **`docker help`**) shows all the `bash` built-ins for which help is available:
 <pre>
-root@nix:~# <b>help</b>
+root@nix ~# <b>help</b>
 <b>GNU bash</b>, version 4.4.20(1)-release (x86_64-pc-linux-gnu)
 These shell commands are defined internally.  Type `help' to see this list.
 Type `help name' to find out more about the function `name'.
@@ -108,12 +108,12 @@ A star (*) next to a name means that the command is disabled.
  getopts optstring name [arg]                                                    wait [-n] [id ...]
  hash [-lr] [-p pathname] [-dt] [name ...]                                       while COMMANDS; do COMMANDS; done
  help [-dms] [pattern ...]                                                       { COMMANDS ; }
-root@nix:~# <b>&block;</b>
+root@ ~# <b>&block;</b>
 </pre>
 
 **`help`** for a specific `bash` built-in command (in this case **`cd`**):
 <pre>
-root@nix:~# <b>help cd</b>
+root@nix ~# <b>help cd</b>
 cd: cd [-L|[-P [-e]] [-@]] [dir]
     Change the shell working directory.
     
@@ -148,7 +148,7 @@ cd: cd [-L|[-P [-e]] [-@]] [dir]
     Exit Status:
     Returns 0 if the directory is changed, and if $PWD is set successfully when
     -P is used; non-zero otherwise.
-root@nix:~# <b>&block;</b>
+root@nix ~# <b>&block;</b>
 </pre>
 
 What happens when you run the **`help`** command on macOS ... which is not Linux, but a BSD derivant, that recently (with the release of Catalina aka 10.15) moved from `bash` to `zsh`:
@@ -163,7 +163,7 @@ user@host % <b>&block;</b>
 <hr />
 So let's try the **`<command> --help`** trick inside our `nix` *Docker* image:
 <pre>
-root@nix:~# <b>tee --help</b>
+root@nix ~# <b>tee --help</b>
 Usage: tee [OPTION]... [FILE]...
 Copy standard input to each FILE, and also to standard output.
 
@@ -188,7 +188,7 @@ GNU coreutils online help: <http://www.gnu.org/software/coreutils/>
 Report tee translation bugs to <http://translationproject.org/team/>
 Full documentation at: <http://www.gnu.org/software/coreutils/tee>
 or available locally via: info '(coreutils) tee invocation'
-root@nix:~# <b>tee --version</b>
+root@nix ~# <b>tee --version</b>
 <b>tee (GNU coreutils) 8.28</b>
 Copyright (C) 2017 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
@@ -196,7 +196,7 @@ This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 
 Written by Mike Parker, Richard M. Stallman, and David MacKenzie.
-root@nix:~# <b>&block;</b>
+root@ ~# <b>&block;</b>
 </pre>
 
 Let us compare that with macOS again:
@@ -232,9 +232,9 @@ root@ubuntu_container:/# <b>&block;</b>
 
 And now ... *finally* ... in your `nix` container:
 <pre>
-root@nix:~# <b>man</b>
+root@nix ~# <b>man</b>
 What manual page do you want?
-root@nix:~# <b>&block;</b>
+root@nix ~# <b>&block;</b>
 </pre>
 
 Oooh. Let's use the **`tee`** command. I know we've not discussed it, but it is super simple and therefore short, and perhaps it illustrates the benefit of a manual page. ;)
