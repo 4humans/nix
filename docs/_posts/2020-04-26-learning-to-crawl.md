@@ -44,7 +44,7 @@ However for the scope of our endeavour which is to learn `*nix` (not become *Doc
 
 **Create a Container**<br />
 <pre>
-user@host ~ % <b>docker run -ti --name='nix' ubuntu /bin/bash
+user@host ~ % <b>docker run -ti --name='nix' ubuntu /bin/bash</b>
 Unable to find image 'ubuntu:latest' locally
 latest: Pulling from library/ubuntu
 a4a2a29f9ba4: Pull complete
@@ -56,7 +56,7 @@ Status: Downloaded newer image for ubuntu:latest
 docker: Error response from daemon: Conflict. The container name "/nix" is already in use by container "4c80eff12ce9e7af3ba43d049b8b4442e360c38f9393fea50eb241023c180a1c". You have to remove (or rename) that container to be able to reuse that name.
 See 'docker run --help'.
 user@host ~ % <b>docker run -ti ubuntu /bin/bash</b>
-<b>root</b>@55734a927ba1:/# <b>exit</b>
+root@55734a927ba1:/# <b>exit</b>
 exit
 user@host ~ % <b>nix % docker container ls -a</b>
 CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                       PORTS   NAMES
@@ -75,7 +75,7 @@ You cannot attach to a stopped container, start it first
 C:\WINDOWS><b>docker container start angry_thompson</b>
 angry_thompson
 C:\WINDOWS><b>docker container attach angry_thompson</b>
-<b>root</b>@55734a927ba1:/# <b>exit</b>
+root@55734a927ba1:/# <b>exit</b>
 exit
 C:\WINDOWS><b>&block;</b>
 </pre>
