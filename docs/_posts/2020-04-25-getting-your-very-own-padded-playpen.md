@@ -7,7 +7,7 @@ comments: false
 tags: [basicdocker,containerisation,setup,virtualisation]
 ---
 
-Since you are perusing `*nix`4*humans*, it would not wholly unreasonable to assume that you are *not* running `*nix` on your home computer. Which by elimination leaves *Windows* &hellip; or possibly *macOS* (which is *actually* `*nix`), but we don't want you experimenting on your own life raft do we?
+Since you are perusing `*nix`4*humans*, it would not wholly unreasonable to assume that you are *not* running `*nix` on your home computer. Which, by elimination, leaves *Windows* &hellip; or possibly *macOS* (which is *actually* `*nix`, but we don't want you experimenting with sharp instruments on your own life raft do we?)
 
 These are the constraints for selecting a suitable `*nix` lab:
 
@@ -18,7 +18,7 @@ These are the constraints for selecting a suitable `*nix` lab:
 > It is perhaps not unreasonable to assume that most readers do not have the means/inclination to spend the price of a second computer on this educational endeavour.
 > 
 > **Constraint 3: Simplicity**<br />
-> The reasonable assumption is that the readers of `*nix`4*humans* do not write their own operating systems, so re-sizing disk partitions and dual booting operating systems (although much simpler these days), is perhaps a bridge too far.
+> The reasonable assumption is that the (generally "non-technical") readers of `*nix`4*humans* don't generally write their own operating systems, so re-sizing disk partitions and dual booting operating systems (although much simpler these days), is perhaps a bridge too far.
 > 
 > **Constraint 4: OS Version**<br />
 > Virtualisation/containerisation software typically requires at least Windows 10 Pro 64-bit (due to [this](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-requirements)).
@@ -110,11 +110,11 @@ Right, enough jibber-jabber, let's get you your very own little patch of `*nix` 
 > <h3>TO DO</h3>
 > <hr />
 > - [ ] Create a [DockerHub](https://hub.docker.com) account.
-> - [ ] Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop) on your machine (or [Docker Toolbox](https://docs.docker.com/toolbox/overview/) on your abacus).
+> - [ ] Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop) on your machine (or [Docker Toolbox](https://docs.docker.com/toolbox/overview/) on your abacus i.e. if your OS does not meet the Docker Desktop minimum requirements).
 > - [ ] Start *Docker Desktop* with your *DockerHub* credentials.
 > - [ ] Open a [CLI](https://en.wikipedia.org/wiki/Command-line_interface) window\*.
 > - [ ] Pull down the `4humans/nix` *Docker* image from *DockerHub*.
-> - [ ] Created your very first and very own `*nix` container, called `nix_sandbox`.
+> - [ ] Create your very first and very own `*nix` container, called `nix_sandbox`.
 
 \* If you are on *macOS*: press &#x2318;`+Space` and type `Terminal`, OR, if you are on *Windows*: press &#x2756;`+X` and select `Command Prompt` from the menu that pops up.
 
@@ -129,20 +129,17 @@ Password: <b><i>&lt;your_dockerhub_password&gt;</i></b>
 Login Succeeded
 
 user@host ~ % <b>docker run -ti --name='nix' --hostname='nix' -v <i>&lt;path_to_shared_folder&gt;</i>:/mnt/shared 4humans/nix</b>
-Unable to find image '4humans/nix:latest' locally
 latest: Pulling from 4humans/nix
-23884877105a: Pull complete 
-bc38caa0f5b9: Pull complete 
-2910811b6c42: Pull complete 
-36505266dcc6: Pull complete 
-df8b2ddb108f: Pull complete 
-aeb553e021e7: Pull complete 
-b4a0bf7ba644: Pull complete 
-e65df4e5e25c: Pull complete 
-Digest: sha256:23ec510985132791a0b4d1f1da81eed35b7deac5075336ec4a47ce5962478251
+d51af753c3d3: Pull complete
+fc878cd0a91c: Pull complete
+6154df8ff988: Pull complete
+fee5db0ff82f: Pull complete
+74671de2ebcc: Pull complete
+Digest: sha256:76e7d8d0c9f8e969ff0cf4320ca931d615ed738263d5975f5b6d501d0e78ad0a
 Status: Downloaded newer image for 4humans/nix:latest
-
-<b>root</b>@nix:/# <b>&block;</b>
+Welcome to fish, the friendly interactive shell
+Type `help` for instructions on how to use fish
+root@nix /# <b>&block;</b>
 </pre>
 
 The *Docker* commands look exactly the same in *Windows*. Only your prompt will look different:
@@ -153,7 +150,7 @@ Login Succeeded
 
 C:\WINDOWS><b>docker run -ti --name=nix_sandbox -v <i>&lt;path_to_shared_folder&gt;</i>:/mnt/shared 4humans/nix /bin/bash</b>
 <b>...</b>
-<b>root</b>@nix:/# <b>&block;</b>
+root@nix /# <b>&block;</b>
 </pre>
 
 Congratulations ... you have now achieved what you set out to do:
@@ -168,35 +165,37 @@ Congratulations ... you have now achieved what you set out to do:
 
 To list the `*nix` filesystem (just to kick the proverbial tyres on this container), type the following command:
 <pre>
-<b>root</b>@nix:/# <b>ls -l</b>
-total 68
-drwxr-xr-x   1 root root 4096 Apr 25 20:46 bin
-drwxr-xr-x   2 root root 4096 Apr 24  2018 boot
-drwxr-xr-x   5 root root  360 Apr 25 22:53 dev
-drwxr-xr-x   1 root root 4096 Apr 25 22:53 etc
-drwxr-xr-x   2 root root 4096 Apr 24  2018 home
-drwxr-xr-x   1 root root 4096 May 23  2017 lib
-drwxr-xr-x   1 root root 4096 Apr 25 20:44 lib64
-drwxr-xr-x   2 root root 4096 Apr  3 17:12 media
-drwxr-xr-x   2 root root 4096 Apr  3 17:12 mnt
-drwxr-xr-x   2 root root 4096 Apr  3 17:12 opt
-dr-xr-xr-x 199 root root    0 Apr 25 22:53 proc
-drwx------   1 root root 4096 Apr 25 21:06 root
-drwxr-xr-x   1 root root 4096 Apr 24 01:07 run
-drwxr-xr-x   1 root root 4096 Apr 25 20:44 sbin
-drwxr-xr-x   2 root root 4096 Apr  3 17:12 srv
-dr-xr-xr-x  13 root root    0 Apr 25 22:53 sys
-drwxrwxrwt   1 root root 4096 Apr 25 20:46 tmp
-drwxr-xr-x   1 root root 4096 Apr  3 17:12 usr
-drwxr-xr-x   1 root root 4096 Apr  3 17:14 var
+root@nix /# <b>ls -l</b>
+total 48
+lrwxrwxrwx   1 root root    7 Apr 23 11:06 bin -> usr/bin/
+drwxr-xr-x   2 root root 4096 Apr 15 11:09 boot/
+drwxr-xr-x   5 root root  360 Jun 21 12:59 dev/
+drwxr-xr-x   1 root root 4096 Jun 21 12:59 etc/
+drwxr-xr-x   2 root root 4096 Apr 15 11:09 home/
+lrwxrwxrwx   1 root root    7 Apr 23 11:06 lib -> usr/lib/
+lrwxrwxrwx   1 root root    9 Apr 23 11:06 lib32 -> usr/lib32/
+lrwxrwxrwx   1 root root    9 Apr 23 11:06 lib64 -> usr/lib64/
+lrwxrwxrwx   1 root root   10 Apr 23 11:06 libx32 -> usr/libx32/
+drwxr-xr-x   2 root root 4096 Apr 23 11:06 media/
+drwxr-xr-x   1 root root 4096 Jun 21 12:59 mnt/
+drwxr-xr-x   2 root root 4096 Apr 23 11:06 opt/
+dr-xr-xr-x 189 root root    0 Jun 21 12:59 proc/
+drwx------   1 root root 4096 Jun 21 12:59 root/
+drwxr-xr-x   1 root root 4096 Apr 24 01:07 run/
+lrwxrwxrwx   1 root root    8 Apr 23 11:06 sbin -> usr/sbin/
+drwxr-xr-x   2 root root 4096 Apr 23 11:06 srv/
+dr-xr-xr-x  12 root root    0 Jun 21 12:59 sys/
+drwxrwxrwt   1 root root 4096 Jun 21 12:59 tmp/
+drwxr-xr-x   1 root root 4096 Jun  6 23:11 usr/
+drwxr-xr-x   1 root root 4096 Apr 23 11:09 var/
 <b>root</b>@nix:/# <b>&block;</b>
 </pre>
 
 And to exit the container, simply type `exit`:
 <pre>
-<b>root</b>@nix:/# <b>exit</b>
+root@nix /# <b>exit</b>
 exit
-user@host ~ % <b>&block;</b>
+<i>&lt;your_USER_name&gt;</i>@<i>&lt;your_HOST_name&gt;</i> <i>&lt;current_folder&gt;</i> % <b>&block;</b>
 </pre>
 
 Or on *Windows*:
@@ -221,10 +220,7 @@ And for completeness, the *Windows* `Command Prompt` looks something like this:
 C:\WINDOWS><b>&block;</b>
 </pre>
 
-If/when you are inside your *Docker* container, the prompt will ***always*** start with `root` followed by `@<container_id>` (twelve hexadecimal digits):
-<pre>
-<b>root</b>@c80c5927c652:/# <b>&block;</b>
-</pre>
+If/when you are inside your *Docker* container, the prompt will ***always*** start with `root@nix`.
 
 I think that's enough for one day. You now have your own little `*nix` sandbox in which to safely play to heart's content (and even if you royally mess it up, it is now super easy to create a new one whenever you wish).
 
