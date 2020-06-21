@@ -200,7 +200,7 @@ exit
 
 Or on *Windows*:
 <pre>
-<b>root</b>@nix:/# <b>exit</b>
+root<@nix:/# <b>exit</b>
 exit
 C:\WINDOWS><b>&block;</b>
 </pre>

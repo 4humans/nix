@@ -10,8 +10,9 @@ tags: [basicdocker,commands,housekeeping]
 Let's first cover the *Docker* basics you may need to support your out-of-control `*nix` habit. On the CLI (`Terminal` in *macOS* and `Command Prompt` in *Windows*) i.e. ***outside*** your container, this is how you list *Docker* containers:
 <pre>
 C:\WINDOWS><b>docker container ls -a</b>
-CONTAINER ID   IMAGE            COMMAND       CREATED        STATUS                      PORTS   NAMES
-db2bbf2f9467   4humans/nix   "/bin/bash"   20 hours ago   Exited (0) 57 seconds ago           nix_sandbox
+docker container ls -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                     PORTS   NAMES
+4c80eff12ce9   4humans/nix   "/bin/sh -c /usr/bin…"   12 minutes ago   Exited (0) 7 minutes ago           nix
 C:\WINDOWS><b>&block;</b>
 </pre>
 
@@ -43,18 +44,24 @@ However for the scope of our endeavour which is to learn `*nix` (not become *Doc
 
 **Create a Container**<br />
 <pre>
-user@host ~ % <b>docker run -ti --name=nix_sandbox ubuntu /bin/bash</b>
-docker: Error response from daemon: Conflict. The container name "/nix_sandbox" is already in use by container
-"f749d99eff10e1d1a8ce743e69ab62db47d569493941543e83f3233c8266b40a".
-You have to remove (or rename) that container to be able to reuse that name.
+user@host ~ % <b>docker run -ti --name='nix' ubuntu /bin/bash
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+a4a2a29f9ba4: Pull complete
+127c9761dcba: Pull complete
+d13bf203e905: Pull complete
+4039240d2e0b: Pull complete
+Digest: sha256:35c4a2c15539c6c1e4e5fa4e554dac323ad0107d8eb5c582d6ff386b383b7dce
+Status: Downloaded newer image for ubuntu:latest
+docker: Error response from daemon: Conflict. The container name "/nix" is already in use by container "4c80eff12ce9e7af3ba43d049b8b4442e360c38f9393fea50eb241023c180a1c". You have to remove (or rename) that container to be able to reuse that name.
 See 'docker run --help'.
 user@host ~ % <b>docker run -ti ubuntu /bin/bash</b>
-<b>root</b>@e26bc87dfc29:/# <b>exit</b>
+<b>root</b>@55734a927ba1:/# <b>exit</b>
 exit
 user@host ~ % <b>nix % docker container ls -a</b>
-CONTAINER ID   IMAGE            COMMAND       CREATED          STATUS                     PORTS   NAMES
-f749d99eff10   4humans/nix      "/bin/bash"   20 hours ago     Exited (0) 8 minutes ago           nix_sandbox
-e26bc87dfc29   ubuntu           "/bin/bash"   2 seconds ago    Exited (0) 1 second ago            angry_thompson
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                       PORTS   NAMES
+55734a927ba1   ubuntu        "/bin/bash"              55 seconds ago   Exited (127) 4 seconds ago           angry_thompson
+4c80eff12ce9   4humans/nix   "/bin/sh -c /usr/bin…"   17 minutes ago   Exited (0) 12 minutes ago            nix
 user@host ~ % <b>&block;</b>
 </pre>
 
@@ -68,7 +75,7 @@ You cannot attach to a stopped container, start it first
 C:\WINDOWS><b>docker container start angry_thompson</b>
 angry_thompson
 C:\WINDOWS><b>docker container attach angry_thompson</b>
-<b>root</b>@e26bc87dfc29:/# <b>exit</b>
+<b>root</b>@55734a927ba1:/# <b>exit</b>
 exit
 C:\WINDOWS><b>&block;</b>
 </pre>
@@ -77,20 +84,20 @@ So, remember: you cannot attach to a *Docker* container if it has not been start
 **Delete a container**<br />
 (In case you have royally mucked it all up):
 <pre>
-user@host ~ % nix % <b>docker container ls -a</b>
-CONTAINER ID   IMAGE            COMMAND       CREATED          STATUS                     PORTS   NAMES
-f749d99eff10   4humans/nix   "/bin/bash"   20 hours ago     Exited (0) 8 minutes ago           nix_sandbox
-e26bc87dfc29   ubuntu           "/bin/bash"   30 seconds ago   Up 9 seconds                       angry_thompson
+user@host ~ % <b>nix % docker container ls -a</b>
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                       PORTS   NAMES
+55734a927ba1   ubuntu        "/bin/bash"              55 seconds ago   Exited (127) 4 seconds ago           angry_thompson
+4c80eff12ce9   4humans/nix   "/bin/sh -c /usr/bin…"   17 minutes ago   Exited (0) 12 minutes ago            nix
 user@host ~ % <b>docker container rm angry_thompson</b>
-Error response from daemon: You cannot remove a running container db2bbf2f946795e65b4a1a3600b929a866212cb35884baa14cdcb15cc41c6dd4.
+Error response from daemon: You cannot remove a running container 55734a927ba11aa9d97eeb0aff00935209431ffd3c3703fc90cf88c7bfa4a18b.
 Stop the container before attempting removal or force remove
 user@host ~ % <b>docker container stop angry_thompson</b>
 angry_thompson
 user@host ~ % <b>docker container rm angry_thompson</b>
 angry_thompson
 user@host ~ % <b>docker container ls -a</b>
-CONTAINER ID   IMAGE            COMMAND       CREATED          STATUS                     PORTS   NAMES
-f749d99eff10   4humans/nix   "/bin/bash"   20 hours ago     Exited (0) 8 minutes ago           nix_sandbox
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                      PORTS   NAMES
+4c80eff12ce9   4humans/nix   "/bin/sh -c /usr/bin…"   26 minutes ago   Exited (0) 21 minutes ago           nix
 user@host ~ % <b>&block;</b>
 </pre>
 
