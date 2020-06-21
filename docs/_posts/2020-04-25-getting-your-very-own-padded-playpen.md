@@ -114,7 +114,7 @@ Right, enough jibber-jabber, let's get you your very own little patch of `*nix` 
 > - [ ] Start *Docker Desktop* with your *DockerHub* credentials.
 > - [ ] Open a [CLI](https://en.wikipedia.org/wiki/Command-line_interface) window\*.
 > - [ ] Pull down the `4humans/nix` *Docker* image from *DockerHub*.
-> - [ ] Create your very first and very own `*nix` container, called `nix_sandbox`.
+> - [ ] Create your very first and very own `*nix` container, called `nix`.
 
 \* If you are on *macOS*: press &#x2318;`+Space` and type `Terminal`, OR, if you are on *Windows*: press &#x2756;`+X` and select `Command Prompt` from the menu that pops up.
 
@@ -148,7 +148,7 @@ C:\WINDOWS><b>docker login --username <i>&lt;your_dockerhub_username&gt;</i></b>
 Password: <b><i>&lt;your_dockerhub_password&gt;</i></b>
 Login Succeeded
 
-C:\WINDOWS><b>docker run -ti --name=nix_sandbox -v <i>&lt;path_to_shared_folder&gt;</i>:/mnt/shared 4humans/nix /bin/bash</b>
+C:\WINDOWS><b>docker run -ti --name='nix' --hostname='nix' -v <i>&lt;path_to_shared_folder&gt;</i>:/mnt/shared 4humans/nix /bin/bash</b>
 <b>...</b>
 root@nix /# <b>&block;</b>
 </pre>
@@ -161,7 +161,7 @@ Congratulations ... you have now achieved what you set out to do:
 > - [X] Started *Docker Desktop* entering your *DockerHub* credentials.
 > - [X] Opened a CLI window.
 > - [X] Pulled down the `4humans/nix` *Docker* image from *DockerHub*.
-> - [X] Created your very first and very own `*nix` container, called `nix_sandbox`.
+> - [X] Created your very first and very own `*nix` container, called `nix`.
 
 To list the `*nix` filesystem (just to kick the proverbial tyres on this container), type the following command:
 <pre>
